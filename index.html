@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Geoffs Web Audio test page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<p>
+
+<h1>Geoffs Web Audio test page</h1></p>
+<br>
+
+<div id="osc1" class="componentBox">
+    <p>Oscillator 1</p>
+    <input id="osc1-vol" type="range" min="0" max="100" value="0">Volume:</input><label id="osc1-volValue"></label>
+    <br>
+    <input id="osc1-freq" type="range" min="0" max="84" value="0">Frequency Value:</input><label
+        id="osc1-freqValue"></label>
+    <br>
+    <input type="radio" id="sine" name="osc1-radio" value="sine">Sine<br>
+    <input type="radio" id="square" name="osc1-radio" value="square">Square<br>
+    <input type="radio" id="sawtooth" name="osc1-radio" value="sawtooth">Sawtooth<br>
+    <input type="radio" id="triangle" name="osc1-radio" value="triangle">Triangle<br>
+
+
+</div>
+<br>
+
+<div id="osc2" class="componentBox">
+    <p>Wave Shaper</p>
+    <input id="waveShaper1" type="range" min="0" max="200">
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+</html>
