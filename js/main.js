@@ -39,6 +39,36 @@ function init() {
 
     });
 
+    var createWSCurve = function (amount) {
+
+        var n_samples = 44100;
+
+        var curve = new Float32Array();
+
+
+        if ((amount >= 0) && (amount < 1)) {
+
+            dist = amount;
+
+            var k = 2 * dist / (1 - dist);
+
+            for (var i = 0; i < n_samples; i+=1) {
+                // LINEAR INTERPOLATION: x := (c - a) * (z - y) / (b - a) + y
+                // a = 0, b = 2048, z = 1, y = -1, c = i
+                var x = (i - 0) * (1 - (-1)) / (n_samples - 0) + (-1);
+                curve[i] = (1 + k) * x / (1+ k * Math.abs(x));
+            }
+
+        }
+        console.log(amount);
+        console.log(curve);
+        return curve;
+    }
+
+    var myCurve = createWSCurve(0.9);
+
+    console.log(myCurve);
+
     $("#waveShaper1").change(function(){
         shaperArray[0] = this.value;
         w.curve = shaperArray;
@@ -68,6 +98,7 @@ function init() {
 
 
 }
+
 
 
 
