@@ -7,18 +7,16 @@ function init() {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         au.context = new AudioContext();
 
-    var g = au.context.createGain();
-    g.gain.value = 0;
-    var o = au.context.createOscillator();
-    var shaperArray = new Float32Array(1,1,1);
-    var w = au.context.createWaveShaper({'curve':'shaperArray'});
+    var gain1 = au.context.createGain();
+    gain1.gain.value = 0;
+    var osc1 = au.context.createOscillator();
 
 
     $("#osc1-freq").change(function () {
 
         var osc1Freq = this.value;
         var osc1FreqLog = Math.pow(osc1Freq, 2);
-        o.frequency.value = osc1FreqLog;
+        osc1.frequency.value = osc1FreqLog;
         $("#osc1-freqValue").text(osc1FreqLog);
     });
 
@@ -28,14 +26,14 @@ function init() {
           var fraction = parseInt(this.value) / parseInt(this.max);
           // Let's use an x*x curve (x-squared) since simple linear (x) does not
           // sound as good.
-        g.gain.value = fraction * fraction;
+        gain1.gain.value = fraction * fraction;
         $("#osc1-volValue").text(this.value);
 
 
     });
 
     $("input[name='osc1-radio']").click(function(){
-        o.type = this.value;
+        osc1.type = this.value;
 
     });
 
@@ -53,7 +51,7 @@ function init() {
 
 
 
-    o.frequency.value = 440;
+    osc1.frequency.value = 440;
     o.type = "sine";
     o.connect(w);
     w.connect(g);
