@@ -216,7 +216,7 @@ textarea {
 
 .componentBox{
 
-    width: 700px;
+    width: 320px;
     height: auto;
     border: 2px solid;
     border-color: black;
@@ -224,6 +224,7 @@ textarea {
     box-shadow: 5px 5px 5px #888888;
     margin: 10px;
     display: block;
+    padding: 10px;
 
 }
 

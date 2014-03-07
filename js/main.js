@@ -1,5 +1,5 @@
 var au = {};
-
+au.curve = new Float32Array();
 window.addEventListener('load', init, false);
 function init() {
 
@@ -39,53 +39,17 @@ function init() {
 
     });
 
-    var createWSCurve = function (amount) {
 
-        var n_samples = 44100;
+    $("#filter1").change(function(){
 
-        var curve = new Float32Array();
-
-
-        if ((amount >= 0) && (amount < 1)) {
-
-            dist = amount;
-
-            var k = 2 * dist / (1 - dist);
-
-            for (var i = 0; i < n_samples; i+=1) {
-                // LINEAR INTERPOLATION: x := (c - a) * (z - y) / (b - a) + y
-                // a = 0, b = 2048, z = 1, y = -1, c = i
-                var x = (i - 0) * (1 - (-1)) / (n_samples - 0) + (-1);
-                curve[i] = (1 + k) * x / (1+ k * Math.abs(x));
-            }
-
-        }
-        console.log(amount);
-        console.log(curve);
-        return curve;
-    }
-
-    var myCurve = createWSCurve(0.9);
-
-    console.log(myCurve);
-
-    $("#waveShaper1").change(function(){
-        shaperArray[0] = this.value;
-        w.curve = shaperArray;
 
     });
 
-    $("#waveShaper2").change(function(){
-       shaperArray[1] = this.value;
-        w.curve = shaperArray;
+    $("#filterQ1").change(function(){
+
 
     });
 
-    $("#waveShaper3").change(function(){
-           shaperArray[2] = this.value;
-            w.curve = shaperArray;
-
-        });
 
 
 
