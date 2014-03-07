@@ -1,5 +1,4 @@
 var au = {};
-au.curve = new Float32Array();
 window.addEventListener('load', init, false);
 function init() {
 
@@ -8,6 +7,8 @@ function init() {
         au.context = new AudioContext();
 
     var gain1 = au.context.createGain();
+    var filter1 = au.context.createBiquadFilter();
+    filter1.type = "lowpass";
     gain1.gain.value = 0;
     var osc1 = au.context.createOscillator();
 
@@ -33,6 +34,7 @@ function init() {
     });
 
     $("input[name='osc1-radio']").click(function(){
+
         osc1.type = this.value;
 
     });
@@ -40,11 +42,15 @@ function init() {
 
     $("#filter1").change(function(){
 
-
+        $("#filter1Value").text(this.value * this.value);
+        filter1.frequency = (this.value * this.value);
+        console.log(filter1.getFrequencyResponse());
     });
 
     $("#filterQ1").change(function(){
-
+        filter1.Q = (this.value / 10000);
+        $("#filterQ1Value").text(this.value / 100000);
+        
 
     });
 
@@ -52,11 +58,11 @@ function init() {
 
 
     osc1.frequency.value = 440;
-    o.type = "sine";
-    o.connect(w);
-    w.connect(g);
-    g.connect(au.context.destination);
-    o.start(0);
+    osc1.type = "sine";
+    osc1.connect(filter1);
+    filter1.connect(gain1);
+    gain1.connect(au.context.destination);
+    osc1.start(0);
 
 
 }
