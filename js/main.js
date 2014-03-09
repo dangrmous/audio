@@ -9,6 +9,7 @@ var au = {};
     var filter1 = au.context.createBiquadFilter();
     var shaper1 = au.context.createWaveShaper();
     var osc1 = au.context.createOscillator();
+    var delay1 = au.context.createDelay();
 
 
     gain1.gain.value = 0;
@@ -59,13 +60,21 @@ var au = {};
         curve[i] = ((Math.random() * 2) -1);
     }
 
+    $("#delay1").change(function(){
+        delay1.delayTime.value = this.value;
+        $("#delay1Value").text(this.value);
+
+    })
+
     shaper1.curve = curve;
     shaper1.oversample = "4x";
     osc1.frequency.value = 440;
     osc1.type = "sine";
     osc1.connect(shaper1);
     shaper1.connect(filter1);
+    filter1.connect(delay1);
     filter1.connect(gain1);
+    delay1.connect(gain1);
     gain1.connect(au.context.destination);
     osc1.start(0);
 
