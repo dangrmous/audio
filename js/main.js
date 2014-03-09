@@ -111,6 +111,7 @@ for (i = 0; i < 44100; i++) {
 
 
 //shaper1.curve = curve;
+gain2.gain.value = 0;
 shaper1.oversample = "4x";
 osc1.frequency.value = 440;
 osc1.type = "sine";
