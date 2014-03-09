@@ -1,3 +1,17 @@
+//Browser test for audio support
+
+var testContext;
+window.addEventListener('load', init, false);
+function init() {
+    try {
+        // Fix up for prefixing
+        window.AudioContext = window.AudioContext||window.webkitAudioContext;
+        testContext = new AudioContext();
+    }
+    catch(e) {
+        alert('Web Audio API is not supported in this browser');
+    }
+}
 var au = {};
 
 
