@@ -9,6 +9,7 @@
 <html class="no-js" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
+    <meta property="og:image" content="http://dangrmous.nurk.org/audio/img/noiser.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Noiser</title>
     <meta name="description" content="">
@@ -34,9 +35,12 @@
 
 <div id="osc1" class="componentBox">
     <p>Oscillator 1</p>
-    <input id="osc1-vol" type="range" min="0" max="100" value="0">Volume:</input><label id="osc1-volValue"></label>
+    <input id="osc1-vol" type="range" min="0" max="100" value="0">Volume: </input><label id="osc1-volValue"></label>
     <br>
-    <input id="osc1-freq" type="range" min="0" max="84" value="0">Frequency Value:</input><label
+    <input id="osc1-freq" type="range" min="0" max="84" value="0">Frequency: </input><label
+        id="osc1-freqValue"></label>
+    <br>
+    <input id="osc1-dist" type="range" min="0" max="100" value="0">Distort: </input><label
         id="osc1-freqValue"></label>
     <br>
     <input type="radio" id="sine" name="osc1-radio" value="sine" checked>Sine<br>
