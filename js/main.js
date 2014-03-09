@@ -35,6 +35,19 @@ $("#osc1-vol").change(function () {
 
 });
 
+$("#osc1-dist").change(function(){
+    curve = new Float32Array(44100);
+    if (this.value != 0){
+    for (i = 0; i < 44100; i++) {
+        curve[i] = baseCurve[i] * this.value;
+    }
+    shaper1.curve = curve;
+    }
+    else shaper1.curve = null;
+    $("#osc1-distValue").text(this.value);
+
+});
+
 $("input[name='osc1-radio']").click(function () {
 
     osc1.type = this.value;
@@ -56,10 +69,7 @@ $("#filterQ1").change(function () {
 
 });
 
-curve = new Float32Array(44100);
-for (i = 0; i < 44100; i++) {
-    curve[i] = ((Math.random() * 2) - 1);
-}
+
 
 $("#delay1").change(function () {
     delay1.delayTime.value = this.value;
@@ -79,7 +89,14 @@ $("#delay1fb").change(function () {
 
 });
 
-shaper1.curve = curve;
+baseCurve = new Float32Array(44100);
+for (i = 0; i < 44100; i++) {
+    baseCurve[i] = ((Math.random() * 2) - 1);
+}
+
+
+
+//shaper1.curve = curve;
 shaper1.oversample = "4x";
 osc1.frequency.value = 440;
 osc1.type = "sine";
