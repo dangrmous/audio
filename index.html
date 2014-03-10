@@ -38,8 +38,8 @@
     <p>Oscillator 1</p>
     <input id="osc1-vol" type="range" min="0" max="100" value="0">Volume: </input><label id="osc1-volValue"></label>
     <br>
-    <input id="osc1-freq" type="range" min="0" max="84" value="0">Frequency: </input><label
-        id="osc1-freqValue"></label>
+    <input id="osc1-freq" type="range" min="0" max="84" value="21">Frequency: </input><label
+        id="osc1-freqValue">440</label> Hz
     <br>
 
     <br>
@@ -48,15 +48,16 @@
     <input type="radio" id="sawtooth" name="osc1-radio" value="sawtooth">Sawtooth<br>
     <input type="radio" id="triangle" name="osc1-radio" value="triangle">Triangle<br>
     <br>
-    <input id="osc1-dist" type="checkbox"> Distort </input>
-
+    <input id="osc1-dist" type="checkbox"> Distort </input><br>
+    <input type="radio" id="distress" name="osc1-distType" checked>Distress <input id="oct1-distAmt" type="range"><br>
+    <input type="radio" id="destroy" name="osc1-distType">Destroy<br>
 </div>
 
 
 <div id="fltr1" class="componentBox">
     <p>Filter 1</p>
-    <input id="filter1" type="range" min="1" max="84" value="0">Filter Frequency: </input><label
-        id="filter1Value"></label>
+    <input id="filter1" type="range" min="1" max="84" value="84">Filter Frequency: </input><label
+        id="filter1Value">7056</label> Hz
     <br>
     <input id="filterQ1" type="range" min="1" max="300000" value="0">Filter Resonance: </input><label
         id="filterQ1Value"></label>

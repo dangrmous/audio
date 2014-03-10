@@ -22,6 +22,7 @@ au.context = new AudioContext();
 var gain1 = au.context.createGain();
 var gain2 = au.context.createGain();
 var filter1 = au.context.createBiquadFilter();
+filter1.frequency.value = 7056;
 var shaper1 = au.context.createWaveShaper();
 var osc1 = au.context.createOscillator();
 var delay1 = au.context.createDelay();
@@ -59,6 +60,11 @@ $("#osc1-dist").click(function(){
     $("#osc1-distValue").text(this.value);
 
 });
+
+$("#osc1-distAmt").change(function(){
+
+
+})
 
 $("input[name='osc1-radio']").click(function () {
 
@@ -103,17 +109,15 @@ $("#delay1fb").change(function () {
 
 
 
-baseCurve = new Float32Array(44100);
-for (i = 0; i < 44100; i++) {
-    baseCurve[i] = ((Math.random() * 2) - 1);
+baseCurve = new Float32Array(10000);
+for (i = 0; i < 10000; i++) {
+
+    baseCurve[i] = Math.random(2) - 1;
+
 }
 
 
-
-//shaper1.curve = curve;
-
 gain2.gain.value = 0;
-shaper1.oversample = "4x";
 osc1.frequency.value = 440;
 osc1.type = "sine";
 osc1.connect(shaper1);
