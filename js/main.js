@@ -5,10 +5,10 @@ window.addEventListener('load', init, false);
 function init() {
     try {
         // Fix up for prefixing
-        window.AudioContext = window.AudioContext||window.webkitAudioContext;
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
         testContext = new AudioContext();
     }
-    catch(e) {
+    catch (e) {
         alert('Web Audio API is not supported in this browser');
     }
 }
@@ -51,18 +51,36 @@ $("#osc1-vol").change(function () {
 
 });
 
-$("#osc1-dist").click(function(){
+$("#osc1-dist").click(function () {
 
-    if ($("#osc1-dist").prop("checked")){
-    shaper1.curve = baseCurve;
-    }
-    else shaper1.curve = null;
-    $("#osc1-distValue").text(this.value);
-
+    updateShaper();
 });
 
-$("#osc1-distAmt").change(function(){
+$("#osc1-distAmt").change(function () {
 
+    updateDistressCurve();
+    updateShaper();
+});
+
+function updateDistressCurve(){
+
+            for (i = 0; i < 1000; i++) {
+                au.distressCurve[i] = Math.random(1) * $("#osc1-distAmt").val();
+
+            }
+
+}
+
+$("input[name='osc1-distType']").click(function () {
+    if ($("#distress").prop("checked")) {
+        curve = au.distressCurve;
+        updateShaper();
+
+    }
+    if ($("#destroy").prop("checked")) {
+        curve = destroyCurve;
+        updateShaper();
+    }
 
 })
 
@@ -71,6 +89,18 @@ $("input[name='osc1-radio']").click(function () {
     osc1.type = this.value;
 
 });
+
+function updateShaper() {
+    if ($("#osc1-dist").prop("checked")) {
+        if($("#destroy").prop("checked")){
+        shaper1.curve = destroyCurve;
+        }
+        else shaper1.curve = au.distressCurve;
+    }
+
+    else shaper1.curve = null;
+
+}
 
 
 $("#filter1").change(function () {
@@ -86,7 +116,6 @@ $("#filterQ1").change(function () {
 
 
 });
-
 
 
 $("#delay1").change(function () {
@@ -108,11 +137,21 @@ $("#delay1fb").change(function () {
 });
 
 
-
-baseCurve = new Float32Array(10000);
+destroyCurve = new Float32Array(10000);
 for (i = 0; i < 10000; i++) {
 
-    baseCurve[i] = Math.random(2) - 1;
+    destroyCurve[i] = Math.random(2) - 1;
+
+}
+
+var curve = new Float32Array();
+curve = destroyCurve;
+
+au.distressCurve = new Float32Array(1000);
+for (i = 0; i < 1000; i++) {
+    if ((i % 2) == 0) {
+        au.distressCurve[i] = 1;
+    }
 
 }
 
