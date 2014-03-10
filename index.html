@@ -6,7 +6,8 @@
 <!--[if IE 8]>
 <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
+<html class="no-js" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta property="og:image" content="http://dangrmous.nurk.org/audio/img/noiser.png" />
@@ -40,13 +41,14 @@
     <input id="osc1-freq" type="range" min="0" max="84" value="0">Frequency: </input><label
         id="osc1-freqValue"></label>
     <br>
-    <input id="osc1-dist" type="range" min="0" max="1" value="0" step="0.01">Distort: </input><label
-        id="osc1-distValue"></label>
+
     <br>
     <input type="radio" id="sine" name="osc1-radio" value="sine" checked>Sine<br>
     <input type="radio" id="square" name="osc1-radio" value="square">Square<br>
     <input type="radio" id="sawtooth" name="osc1-radio" value="sawtooth">Sawtooth<br>
     <input type="radio" id="triangle" name="osc1-radio" value="triangle">Triangle<br>
+    <br>
+    <input id="osc1-dist" type="checkbox"> Distort </input>
 
 </div>
 
@@ -68,7 +70,6 @@
     <input id="delay1fb" type="range" min="0" max="100" value="0">Feedback: </input><label id="delay1fbValue"></label>
 
 </div>
-
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

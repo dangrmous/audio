@@ -25,6 +25,7 @@ var filter1 = au.context.createBiquadFilter();
 var shaper1 = au.context.createWaveShaper();
 var osc1 = au.context.createOscillator();
 var delay1 = au.context.createDelay();
+var comp1 = au.context.createDynamicsCompressor();
 
 
 gain1.gain.value = 0;
@@ -49,13 +50,10 @@ $("#osc1-vol").change(function () {
 
 });
 
-$("#osc1-dist").change(function(){
-    curve = new Float32Array(44100);
-    if (this.value != 0){
-    for (i = 0; i < 44100; i++) {
-        curve[i] = baseCurve[i] * this.value;
-    }
-    shaper1.curve = curve;
+$("#osc1-dist").click(function(){
+
+    if ($("#osc1-dist").prop("checked")){
+    shaper1.curve = baseCurve;
     }
     else shaper1.curve = null;
     $("#osc1-distValue").text(this.value);
@@ -103,6 +101,8 @@ $("#delay1fb").change(function () {
 
 });
 
+
+
 baseCurve = new Float32Array(44100);
 for (i = 0; i < 44100; i++) {
     baseCurve[i] = ((Math.random() * 2) - 1);
@@ -111,6 +111,7 @@ for (i = 0; i < 44100; i++) {
 
 
 //shaper1.curve = curve;
+
 gain2.gain.value = 0;
 shaper1.oversample = "4x";
 osc1.frequency.value = 440;
@@ -122,7 +123,8 @@ filter1.connect(gain1);
 delay1.connect(gain1);
 delay1.connect(gain2);
 gain2.connect(delay1);
-gain1.connect(au.context.destination);
+gain1.connect(comp1);
+comp1.connect(au.context.destination);
 osc1.start(0);
 
 
