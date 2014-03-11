@@ -65,7 +65,11 @@ $("#osc1-distAmt").change(function () {
 function updateDistressCurve(){
 
             for (i = 0; i < 1000; i++) {
-                au.distressCurve[i] = Math.random(1) * $("#osc1-distAmt").val();
+                var amt = $("#osc1-distAmt").val();
+                var point = Math.tan(i * amt) * amt;
+                if (point > 1) point = 1;
+                if (point < -1) point = -1;
+                au.distressCurve[i] = point;
 
             }
 
