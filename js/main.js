@@ -9,11 +9,6 @@ var osc1 = context.createOscillator();
 var delay1 = context.createDelay();
 var comp1 = context.createDynamicsCompressor();
 
-gain1.gain.value = 0;
-
-var slider = $("#osc1-freq");
-console.dir(slider);
-
 $("#osc1-freq").on("input", function () {
     var osc1Freq = this.value;
     var osc1FreqLog = Math.pow(osc1Freq, 2);
@@ -27,6 +22,7 @@ $("#osc1-vol").on("input", function () {
     // sound as good.
     gain1.gain.value = fraction * fraction;
     $("#osc1-volValue").text(this.value);
+    $("#volumeHint").addClass("hidden");
 });
 
 $("#osc1-dist").on("click", function () {
@@ -112,19 +108,29 @@ for (i = 0; i < 1000; i++) {
     }
 }
 
-gain2.gain.value = 0;
-osc1.frequency.value = 440;
-osc1.type = "sine";
-osc1.connect(shaper1);
-shaper1.connect(filter1);
-filter1.connect(delay1);
-filter1.connect(gain1);
-delay1.connect(gain1);
-delay1.connect(gain2);
-gain2.connect(delay1);
-gain1.connect(comp1);
-comp1.connect(context.destination);
-osc1.start(0);
+
+$("#startbutton").click(function () {
+    $(".componentBox").removeClass("hidden");
+    $("#startComponent").addClass("hidden");
+    var resumed = context.resume();
+    resumed.then(()=>{
+        gain1.gain.value = 0;
+        gain2.gain.value = 0;
+        osc1.frequency.value = 440;
+        osc1.type = "sine";
+        osc1.connect(shaper1);
+        shaper1.connect(filter1);
+        filter1.connect(delay1);
+        filter1.connect(gain1);
+        delay1.connect(gain1);
+        delay1.connect(gain2);
+        gain2.connect(delay1);
+        gain1.connect(comp1);
+        comp1.connect(context.destination);
+        osc1.start(0);
+    })
+})
+
 
 
 
